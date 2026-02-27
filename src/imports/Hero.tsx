@@ -1,4 +1,5 @@
 import imgHero from "../assets/45872a6a35a44dfa2ef16ca4f5efe4d38b2bbfc3.png";
+import { useRegistration } from "../app/contexts/RegistrationContext";
 
 function HeadlineContainer() {
   return (
@@ -24,8 +25,11 @@ function HeadlineContainer() {
 }
 
 function ButtonContainer() {
+  const { openRegistration } = useRegistration();
+  
   return (
     <div
+      onClick={openRegistration}
       className="flex items-center justify-center w-full sm:w-auto px-6 md:px-[43px] py-[11px] rounded-[27px] shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
       data-name="Button Container"
       style={{
@@ -62,38 +66,17 @@ function TextContainer() {
 function VideoPlaceholder() {
   return (
     <div
-      className="w-full md:flex-[1_0_0] h-[220px] sm:h-[280px] md:h-[323.848px] relative rounded-[12px] overflow-hidden shrink-0 flex items-center justify-center cursor-pointer group"
-      style={{
-        background: "linear-gradient(135deg, rgba(13,19,83,0.85) 0%, rgba(107,36,160,0.7) 60%, rgba(36,69,255,0.6) 100%)",
-        border: "1.5px solid rgba(170,69,232,0.35)",
-        boxShadow: "0 8px 40px rgba(107,36,160,0.25)",
-      }}
+      className="w-full md:flex-[1_0_0] h-[220px] sm:h-[280px] md:h-[323.848px] relative rounded-[8.788px] overflow-hidden shrink-0"
+      data-name="Image"
     >
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
+      <iframe
+        id="hero-video-iframe"
+        src="https://drive.google.com/file/d/1wBzB2g5TP3kXI11Kw7SMCl9Mhyo4bIrL/preview"
+        className="absolute inset-0 w-full h-full rounded-[8.788px]"
+        allow="autoplay; fullscreen"
+        allowFullScreen
+        title="Video"
       />
-      {/* Glow circle behind play button */}
-      <div
-        className="absolute w-32 h-32 rounded-full opacity-30 blur-2xl"
-        style={{ background: "radial-gradient(circle, #aa45e8, #2445ff)" }}
-      />
-      {/* Play button */}
-      <div
-        className="relative z-10 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-110"
-        style={{
-          background: "linear-gradient(161deg, rgb(170,69,232) 26%, rgb(36,69,255) 87%)",
-          boxShadow: "0 0 32px rgba(170,69,232,0.5)",
-        }}
-      >
-        <svg className="w-6 h-6 sm:w-8 sm:h-8 ml-1 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
     </div>
   );
 }

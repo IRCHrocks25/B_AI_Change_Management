@@ -1,5 +1,28 @@
 import svgPaths from "./svg-8ht6v7hrau";
 
+function scrollToVideo() {
+  const heroSection = document.querySelector('[data-name="hero"]');
+  if (heroSection) {
+    heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Trigger video play after scrolling
+    setTimeout(() => {
+      const iframe = document.getElementById('hero-video-iframe') as HTMLIFrameElement;
+      if (iframe) {
+        // Reload iframe with autoplay parameter
+        const currentSrc = iframe.src;
+        if (!currentSrc.includes('autoplay=1')) {
+          iframe.src = currentSrc.includes('?') 
+            ? `${currentSrc}&autoplay=1` 
+            : `${currentSrc}?autoplay=1`;
+        } else {
+          // Force reload to trigger autoplay
+          iframe.src = iframe.src;
+        }
+      }
+    }, 600);
+  }
+}
+
 function NavItem() {
   return (
     <div className="h-[20px] sm:h-[24px] relative shrink-0 w-[200px] sm:w-[240px] md:w-[289px]" data-name="Nav Item">
@@ -69,6 +92,7 @@ function NavItem() {
 function ButtonContainer() {
   return (
     <div
+      onClick={scrollToVideo}
       className="flex items-center justify-center px-4 sm:px-[11.195px] py-[8px] sm:py-[8.956px] rounded-[22.389px] shrink-0 h-[36px] sm:h-[40px] md:h-[43.1px] w-auto sm:w-[150px] md:w-[181px] cursor-pointer"
       data-name="Button Container"
       style={{ backgroundImage: "linear-gradient(146.25deg, rgb(170, 69, 232) 26.236%, rgb(36, 69, 255) 86.882%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}

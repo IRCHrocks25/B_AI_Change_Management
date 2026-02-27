@@ -1,9 +1,12 @@
 import LandingPage from "../imports/LandingPage";
+import { RegistrationProvider } from "./contexts/RegistrationContext";
 
 export default function App() {
   return (
-    <div className="w-full overflow-x-hidden">
-      <LandingPage />
-    </div>
+    <RegistrationProvider>
+      <div className="w-full overflow-x-hidden">
+        <LandingPage />
+      </div>
+    </RegistrationProvider>
   );
 }
